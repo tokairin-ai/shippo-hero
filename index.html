@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shippo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Zen+Old+Mincho:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader" data-loader>
+    <div class="loader__bar"><span data-loader-bar></span></div>
+    <p class="loader__count"><span data-loader-count>0</span>%</p>
+  </div>
+
+  <div class="progress" data-progress aria-hidden="true"></div>
+
+  <div class="scroll-track" data-scrub-track>
+    <div class="stage">
+      <canvas class="stage__canvas" data-scrub-canvas></canvas>
+
+      <div class="snow" aria-hidden="true">
+        <canvas class="snow__canvas" data-snow-canvas></canvas>
+        <div class="snow__veil"></div>
+      </div>
+
+      <div class="hero-ui" data-hero-ui>
+        <header class="hero__head">
+          <a class="hero__mark hero__mark--small" href="#top" role="img" aria-label="Shippo"></a>
+          <nav class="hero__nav">
+            <a href="#about">ABOUT</a>
+            <a href="#products">PRODUCTS</a>
+            <a href="#journal">JOURNAL</a>
+            <a href="#contact">CONTACT</a>
+          </nav>
+        </header>
+
+        <div class="hero__center">
+          <div class="hero__mark hero__mark--large" role="img" aria-label="Shippo"></div>
+          <p class="hero__tagline">しずかに、ちいさく、ながく</p>
+        </div>
+
+        <footer class="hero__foot">
+          <p class="hero__est">EST. 2026 / HOKKAIDO</p>
+          <a class="hero__scroll" href="#about">SCROLL</a>
+        </footer>
+      </div>
+
+      <div class="scroll-hint" data-scroll-hint aria-hidden="true">
+        <span class="scroll-hint__label">Scroll</span>
+        <span class="scroll-hint__line"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
