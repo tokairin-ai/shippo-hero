@@ -3,6 +3,7 @@ const EASE = 0.14; // displayedProgress が targetProgress に追従する速さ
 const FOCUS = { x: 0.5, y: 0.5 }; // object-position 相当。木の見え方はここで微調整する
 
 const OUTRO_START = 0.7; // ブランドレイアウトが組み上がり始めるスクロール位置
+const HOLD_SCREENS = 1; // 組み上がったあと、次のセクションに入るまで静止させる画面数
 
 // OUTRO_START〜1.0 を 0〜1 に均した中での、各要素の出現区間。
 // スマホは先に雪で画面を埋めきってから、その白の上にロゴを浮かべる。
@@ -181,7 +182,9 @@ function initScrollScrubFrames({ track, canvas, images, heroUi, snowfield, onPro
 
   const getProgress = () => {
     const rect = track.getBoundingClientRect();
-    const distance = rect.height - window.innerHeight;
+    // 末尾の HOLD_SCREENS 分はスクラブに使わない。
+    // 最終フレームまで来たあと、その画面のまま静止してから次のセクションへ抜ける
+    const distance = rect.height - window.innerHeight * (1 + HOLD_SCREENS);
     if (distance <= 0) return 0;
     return clamp01(-rect.top / distance);
   };

@@ -20,7 +20,8 @@ html.is-loading body {
 
 .scroll-track {
   position: relative;
-  height: 400vh;
+  /* 映像のスクラブに3画面 + 組み上がったあとの静止に1画面(HOLD_SCREENS) */
+  height: 500vh;
   background: #000;
 }
 

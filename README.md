@@ -46,7 +46,8 @@ python3 -m http.server 8793
 
 ## 仕組み
 
-- 400vh のスクロール領域の中に `position: sticky` の stage を置き、画面に固定したまま canvas にフレームを描き替える
+- 500vh のスクロール領域の中に `position: sticky` の stage を置き、画面に固定したまま canvas にフレームを描き替える。
+  うち末尾の1画面分は映像を進めず、組み上がった最終画面のまま静止してから次のセクションへ抜ける（`HOLD_SCREENS`）
 - `progress = スクロール量 ÷ (トラック高さ − 画面高さ)` を 0〜1 にし、`frameIndex = round(progress × (枚数 − 1))`
 - スクロールに直接追従させず、`displayed` を毎フレーム少しずつ `target` に寄せて慣性を出している（`EASE`）
 - 先頭48枚だけ読み終えたらローディングを抜け、残りはバックグラウンドで読む。未着のフレームは直近のフレームで埋める
@@ -78,6 +79,8 @@ PC（写真全面の上にロゴが霧から浮き出る）:
 `main.js` 冒頭:
 
 - `OUTRO_START` — 終盤の演出が始まる位置（0.7 = 70%）
+- `HOLD_SCREENS` — 組み上がったあと静止させる画面数（1 = 1画面分）。
+  変えたら `hero.css` の `.scroll-track` の高さも合わせる（スクラブ3画面 + HOLD_SCREENS）
 - `REVEAL.wide` / `REVEAL.narrow` — PC / スマホそれぞれの出現区間
 - `EASE` — スクロールへの追従の速さ（小さいほど慣性が強い）
 - `FOCUS` — 写真のクロップ位置（object-position 相当）
