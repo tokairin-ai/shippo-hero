@@ -28,12 +28,16 @@ python3 -m http.server 8793
 
 | パス | 役割 |
 |---|---|
-| `index.html` | ページ全体のマークアップ |
-| `style.css` | **ヒーロー専用**のレイアウトと出現演出（`--p-*` 変数で駆動） |
-| `site.css` | ヘッダー・ドロワー・以降のセクション・フッター |
-| `main.js` | フレーム読み込み・スクロール同期・雪の描画 |
-| `site.js` | GSAP + ScrollTrigger のセクション演出、ドロワーメニュー |
-| `docs-design-spec.md` | 統合したテンプレート側のデザイン仕様 |
+| `index.html` | トップページ（ヒーロー＋各セクション） |
+| `products/news/stores/contact.html` | サブページ |
+| `hero.css` / `hero.js` | **ヒーロー専用**。フレーム読み込み・スクロール同期・雪・出現演出 |
+| `style.css` | サイト共通（ヘッダー・ドロワー・セクション・フッター） |
+| `script.js` | GSAP + ScrollTrigger のセクション演出、ドロワーメニュー |
+| `navigation.js` | ナビの英日ロールオーバー |
+| `catalog.css` / `catalog.js` / `subpage.css` / `subpage.js` | サブページ用 |
+| `docs-design-spec.md` | サイト側のデザイン仕様 |
+
+`hero.css` / `hero.js` はトップページでしか読み込まない。サブページは従来どおり動く。
 | `frames/frame_0001〜0303.webp` | 映像の連番（1920×1080 / webp q0.92 / 計24.8MB） |
 | `frames/manifest.json` | フレーム枚数。枚数を変えたらここを更新 |
 | `assets/shippo-logo.png` | ロゴ（単色PNG。CSSマスクで色を差し替えて使用） |
@@ -102,13 +106,17 @@ ffmpeg -i videos/hero.mp4 -vf "fps=60,scale=1920:-2" -c:v libwebp -quality 92 -c
 
 ## ヒーローとサイトの繋ぎ方
 
-- サイト共通ヘッダー（`.site-header`）は**ヒーロー中は透明**。`opacity: var(--p-head)` で、
-  ロゴ・コピーと同じタイミングで浮かび上がる。透明なあいだはクリックを通さない（`html.is-chrome-ready`）
-- ヘッダーの白背景への切り替え（`.site-header--scrolled`）は、ヒーローを抜けてから効く（`site.js`）
+- サイト共通ヘッダーは**最初から表示**する（サブページへの導線なので隠さない）。
+  雪景色に載るため、トップでは `hero.css` で深緑に上書きしている
+- ヘッダーの白背景への切り替え（`.site-header--scrolled`）は、ヒーローを抜けてから効く（`script.js`）。
+  サブページにはヒーローが無いので従来どおり 24px で切り替わる
 - ヘッダーのロゴは単色PNGをマスクにして `currentColor` で塗っているので、
   ヒーロー上では深緑、白背景では本文色に自動で切り替わる
-- `site.css` の `body` は `overflow-x: clip`。`hidden` にすると body がスクロールコンテナになり、
+- `style.css` の `body` は `overflow-x: clip`。`hidden` にすると body がスクロールコンテナになり、
   ヒーローの `position: sticky` が効かなくなる
+- 家の写真のヒーローは HTML・CSS・GSAP アニメーションごと削除済み。
+  特に `gsap.from(".site-header")` は inline style で opacity を固定してしまうため残せない
+- `server.ps1` は Netlify と同じく拡張子なしURL（`/products`）を `.html` に解決する
 
 ## 未着手・残課題
 

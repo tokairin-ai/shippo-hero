@@ -1,6 +1,6 @@
 [build]
   # 4K素材(videos/)とローカル確認用サーバー(server.ps1)は配信しない
-  command = "mkdir -p _site && cp -r index.html style.css site.css main.js site.js assets frames _site/"
+  command = "mkdir -p _site && cp -r *.html *.css *.js assets frames _site/"
   publish = "_site"
 
 # フレームは差し替えない限り中身が変わらないので長期キャッシュさせる

@@ -10,14 +10,12 @@ const REVEAL = {
   wide: {
     mark: [0.0, 0.52],
     tag: [0.2, 0.7],
-    head: [0.38, 0.84],
     foot: [0.54, 1.0],
   },
   narrow: {
     snow: [0.0, 0.62],
     mark: [0.56, 0.94],
     tag: [0.68, 1.0],
-    head: [0.78, 1.0],
     foot: [0.84, 1.0],
   },
 };
@@ -216,18 +214,14 @@ function initScrollScrubFrames({ track, canvas, images, heroUi, snowfield, onPro
     const outro = clamp01((displayed - OUTRO_START) / (1 - OUTRO_START));
     const reveal = narrow ? REVEAL.narrow : REVEAL.wide;
 
-    const headP = easeOut(rangeAt(outro, reveal.head));
     // 積もる量だけは等速。イーズをかけると途中で止まって見える
     const snowP = narrow ? rangeAt(outro, reveal.snow) : 0;
     root.style.setProperty("--p-snow", snowP.toFixed(4));
     snowfield.setAmount(snowP);
     root.style.setProperty("--p-mark", easeOut(rangeAt(outro, reveal.mark)).toFixed(4));
     root.style.setProperty("--p-tag", easeOut(rangeAt(outro, reveal.tag)).toFixed(4));
-    root.style.setProperty("--p-head", headP.toFixed(4));
     root.style.setProperty("--p-foot", easeOut(rangeAt(outro, reveal.foot)).toFixed(4));
     heroUi.classList.toggle("is-interactive", outro > 0.92);
-    // ヘッダーが透明なあいだはクリックを通さない
-    root.classList.toggle("is-chrome-ready", headP > 0.5);
 
     if (onProgress) onProgress(displayed);
     draw(Math.round(displayed * (images.length - 1)));

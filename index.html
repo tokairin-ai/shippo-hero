@@ -9,12 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Zen+Old+Mincho:wght@400;600&display=swap" />
-  <link rel="stylesheet" href="./site.css" />
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./hero.css" />
+  <script defer src="./navigation.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script defer src="./site.js"></script>
-  <script defer src="./main.js"></script>
+  <script defer src="./script.js"></script>
+  <script defer src="./hero.js"></script>
 </head>
 
 <body>
@@ -27,9 +28,10 @@
     <a class="site-header__logo" href="#top" aria-label="Shippo トップへ">Shippo</a>
     <nav class="site-header__nav" aria-label="メインナビゲーション">
       <a href="#about">About</a>
-      <a href="#products">Products</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
+      <a href='/products'>Products</a>
+      <a href='/news'>News</a>
+      <a href='/stores'>Stores</a>
+      <a href='/contact'>Contact</a>
     </nav>
     <button
       class="menu-button"
@@ -49,15 +51,16 @@
       <nav class="drawer-menu__nav" aria-label="ドロワーナビゲーション">
         <a href="#top"><span>ホーム</span><small>Home</small></a>
         <a href="#about"><span>私たちについて</span><small>About</small></a>
-        <a href="#products"><span>プロダクト</span><small>Products</small></a>
-        <a href="#news"><span>日々の便り</span><small>News</small></a>
+        <a href='/products'><span>プロダクト</span><small>Products</small></a>
+        <a href='/news'><span>日々の便り</span><small>News</small></a>
         <a href="#faq"><span>よくあるご質問</span><small>FAQ</small></a>
-        <a href="#contact"><span>お問い合わせ</span><small>Contact</small></a>
+        <a href='/stores'><span>取り扱い店舗</span><small>Stores</small></a>
+        <a href='/contact'><span>お問い合わせ</span><small>Contact</small></a>
       </nav>
       <div class="drawer-menu__footer">
         <address class="drawer-menu__info">
           <strong>Shippo Inc.</strong>
-          <span>北海道</span>
+          <span>2-10-4 Aoyama, Minato-ku, Tokyo</span>
           <a href="tel:+81300000000">03-0000-0000</a>
           <a href="mailto:hello@example.com">hello@example.com</a>
         </address>
@@ -82,14 +85,14 @@
 
         <div class="hero-ui" data-hero-ui>
           <div class="hero__center">
-            <div class="hero__mark hero__mark--large" role="img" aria-label="Shippo"></div>
+            <h1 class="hero__mark hero__mark--large" aria-label="Shippo"></h1>
             <p class="hero__tagline">しずかに、ちいさく、ながく</p>
           </div>
 
-          <footer class="hero__foot">
+          <div class="hero__foot">
             <p class="hero__est">EST. 2026 / HOKKAIDO</p>
             <a class="hero__scroll" href="#about">SCROLL</a>
-          </footer>
+          </div>
         </div>
 
         <div class="scroll-hint" data-scroll-hint aria-hidden="true">
@@ -130,41 +133,45 @@
     </section>
 
     <section class="section products" id="products" aria-labelledby="products-title">
-      <div class="container">
+      <div class="container products__stage">
         <div class="section-heading reveal-blur">
           <p class="section-heading__label">Products</p>
           <h2 id="products-title">暮らしに残るもの</h2>
         </div>
         <div class="products__grid">
-          <a class="product-card" href="#">
+          <a class='product-card' href='/product'>
             <figure class="product-card__media">
-              <img src="https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&q=85&w=1200" alt="木製の椅子「凪」" />
+              <img src="https://images.unsplash.com/photo-1709342320715-6b6d4ffd8c83?auto=format&fit=crop&q=85&w=1200" alt="楓の一枚板で作ったまな板" />
             </figure>
             <div class="product-card__body">
-              <h3>Chair / 凪</h3>
-              <p>静かな輪郭と、やわらかな座り心地。</p>
+              <h3>Cutting board / 楓</h3>
+              <p>刃当たりがやわらかな、台所の中心。</p>
             </div>
           </a>
-          <a class="product-card" href="#">
+          <a class='product-card' href='/product'>
             <figure class="product-card__media">
-              <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=85&w=1200" alt="温かな光を灯す照明「灯」" />
+              <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&q=85&w=1200" alt="山桜から削り出した料理用のおたま" />
             </figure>
             <div class="product-card__body">
-              <h3>Lamp / 灯</h3>
-              <p>夕暮れの光を、部屋の中へ。</p>
+              <h3>Ladle / 山桜</h3>
+              <p>鍋に触れるたび、手になじむ曲線。</p>
             </div>
           </a>
-          <a class="product-card" href="#">
+          <a class='product-card' href='/product'>
             <figure class="product-card__media">
-              <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&q=85&w=1200" alt="無垢材のテーブル「環」" />
+              <img src="https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&q=85&w=1200" alt="栓の無垢材で作った長角盆" />
             </figure>
             <div class="product-card__body">
-              <h3>Table / 環</h3>
-              <p>集う時間を受け止める、ひとつの円。</p>
+              <h3>Tray / 栓</h3>
+              <p>運ぶ時間も、食卓の風景に。</p>
             </div>
           </a>
         </div>
-        <a class="pill-button pill-button--outline reveal-soft" href="#">すべてのプロダクトを見る <span aria-hidden="true">→</span></a>
+        <a class='pill-button pill-button--outline reveal-soft' href='/products'>すべてのプロダクトを見る <span aria-hidden="true">→</span></a>
+        <p class="products__guide" aria-hidden="true">
+          <span class="products__guide-line"></span>
+          Scroll to reveal / 03 objects
+        </p>
       </div>
     </section>
 
@@ -175,19 +182,19 @@
           <h2 id="news-title">日々の便り</h2>
         </div>
         <div class="news__list">
-          <a class="news-item reveal-group" href="#">
+          <a class='news-item reveal-group' href='/news-detail'>
             <time datetime="2026-09-01">2026.09.01</time>
             <span class="news-item__category">Journal</span>
             <span class="news-item__title">秋の光と、木の手触りについて</span>
             <span class="news-item__arrow" aria-hidden="true">↗</span>
           </a>
-          <a class="news-item reveal-group" href="#">
+          <a class='news-item reveal-group' href='/news-detail'>
             <time datetime="2026-08-18">2026.08.18</time>
             <span class="news-item__category">Event</span>
             <span class="news-item__title">東京・青山で展示会を開催します</span>
             <span class="news-item__arrow" aria-hidden="true">↗</span>
           </a>
-          <a class="news-item reveal-group" href="#">
+          <a class='news-item reveal-group' href='/news-detail'>
             <time datetime="2026-07-24">2026.07.24</time>
             <span class="news-item__category">Products</span>
             <span class="news-item__title">新しいプロダクト「灯」が生まれました</span>
@@ -232,7 +239,7 @@
         <p class="section-heading__label">Contact</p>
         <h2 id="contact-title">まだ名前のない風景を、<br />一緒につくりませんか。</h2>
         <p>プロジェクトのご相談、取材、協業について、お気軽にお聞かせください。</p>
-        <a class="pill-button pill-button--ghost contact__button" href="mailto:hello@example.com">
+        <a class='pill-button pill-button--ghost contact__button' href='/contact'>
           <span>お問い合わせ</span>
           <span aria-hidden="true">↗</span>
         </a>
@@ -244,14 +251,16 @@
     <div class="site-footer__top">
       <a class="site-footer__logo" href="#top">Shippo</a>
       <div class="site-footer__info">
-        <p>Hokkaido, Japan</p>
+        <p>Tokyo, Japan</p>
         <a href="mailto:hello@example.com">hello@example.com</a>
       </div>
       <nav class="site-footer__nav" aria-label="フッターナビゲーション">
         <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#news">News</a>
+        <a href='/products'>Products</a>
+        <a href='/news'>News</a>
         <a href="#faq">FAQ</a>
+        <a href='/stores'>Stores</a>
+        <a href='/contact'>Contact</a>
       </nav>
     </div>
     <div class="site-footer__bottom">

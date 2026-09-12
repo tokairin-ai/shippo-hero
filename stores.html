@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shippo製品の国内取り扱い店舗をご案内します。" />
+  <title>国内取り扱い店舗一覧 | Shippo</title>
+  <script>document.documentElement.classList.add("has-js");</script>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./subpage.css" />
+  <script defer src="./navigation.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="./subpage.js"></script>
+</head>
+
+<body class="subpage" id="top">
+  <header class="site-header" data-header>
+    <a aria-label='Shippo トップへ' class='site-header__logo' href='/'>Shippo</a>
+    <nav class="site-header__nav" aria-label="メインナビゲーション">
+      <a href='/#about'>About</a>
+      <a href='/products'>Products</a>
+      <a href='/news'>News</a>
+      <a aria-current='page' href='/stores'>Stores</a>
+      <a href='/contact'>Contact</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="メニューを開く" aria-controls="drawer-menu" aria-expanded="false" data-menu-open>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="drawer-menu" id="drawer-menu" aria-hidden="true" data-drawer>
+    <div class="drawer-menu__body">
+      <nav class="drawer-menu__nav" aria-label="ドロワーナビゲーション">
+        <a href='/'><span>ホーム</span><small>Home</small></a>
+        <a href='/#about'><span>私たちについて</span><small>About</small></a>
+        <a href='/products'><span>プロダクト</span><small>Products</small></a>
+        <a href='/news'><span>日々の便り</span><small>News</small></a>
+        <a aria-current='page' href='/stores'><span>取り扱い店舗</span><small>Stores</small></a>
+        <a href='/contact'><span>お問い合わせ</span><small>Contact</small></a>
+      </nav>
+      <div class="drawer-menu__footer">
+        <address class="drawer-menu__info">
+          <strong>Shippo Inc.</strong>
+          <span>2-10-4 Aoyama, Minato-ku, Tokyo</span>
+          <a href="tel:+81300000000">03-0000-0000</a>
+          <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+        <div class="drawer-menu__social" aria-label="ソーシャルメディア">
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="X">X</a>
+          <a href="#" aria-label="Facebook">Fb</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="subpage-hero" aria-labelledby="page-title">
+      <div class="subpage-hero__media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=85&w=1800" alt="" onerror="this.style.display='none'" />
+      </div>
+      <h1 class="subpage-hero__title" id="page-title"><span>国内取り扱い店舗一覧</span></h1>
+      <p class="subpage-hero__index">STOCKISTS / 01</p>
+    </section>
+
+    <section class="container page-intro" aria-labelledby="stores-intro-title">
+      <p class="page-intro__label" data-reveal>Stockists</p>
+      <div class="page-intro__body" data-reveal>
+        <h2 id="stores-intro-title">手に触れて、確かめる。<br />暮らしに合うひとつを。</h2>
+        <p>Shippoのプロダクトをお取り扱いいただいている国内店舗をご案内します。展示状況や在庫は店舗により異なります。ご来店前に、各店舗へお問い合わせください。</p>
+      </div>
+    </section>
+
+    <nav class="area-nav" aria-label="地域から店舗を探す">
+      <div class="container area-nav__inner">
+        <a href="#hokkaido">北海道</a>
+        <a href="#tohoku">東北</a>
+        <a href="#kanto">関東</a>
+        <a href="#koshinetsu">甲信越</a>
+        <a href="#tokai">東海・北陸</a>
+        <a href="#kinki">近畿</a>
+        <a href="#chugoku">中国・四国</a>
+        <a href="#kyushu">九州・沖縄</a>
+      </div>
+    </nav>
+
+    <div class="container stores">
+      <section class="store-region" id="hokkaido" aria-labelledby="hokkaido-title">
+        <h2 class="store-region__heading" id="hokkaido-title" data-reveal>北海道エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>inZONE・宮の森</h3><address>〒063-0802<br />北海道札幌市西区二十四軒二条7-1-14</address><p class="store-card__hours">OPEN 11:00–19:00／不定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=inZONE+宮の森" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>inZONE・大通店</h3><address>〒060-0061<br />北海道札幌市中央区南1条西6丁目4-1</address><p class="store-card__hours">OPEN 11:00–19:00／不定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=inZONE+大通店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="tohoku" aria-labelledby="tohoku-title">
+        <h2 class="store-region__heading" id="tohoku-title" data-reveal>東北エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・仙台店</h3><address>宮城県仙台市泉区紫山1-1-4<br />紫山プラザ</address><p class="store-card__hours">OPEN 11:00–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス仙台店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>F BEYOND</h3><address>青森県青森市自由ヶ丘2-15-4</address><p class="store-card__hours">OPEN 11:00–19:00／水・木曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=F+BEYOND+青森" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>Libretto</h3><address>福島県いわき市鹿島町米田字馬場1-2</address><p class="store-card__hours">OPEN 10:00–18:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=Libretto+いわき" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="kanto" aria-labelledby="kanto-title">
+        <h2 class="store-region__heading" id="kanto-title" data-reveal>関東エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・新宿店</h3><address>東京都新宿区新宿2-19-1<br />BYGS新宿ビル1・2F</address><p class="store-card__hours">OPEN 11:00–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス新宿店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>アクタス・青山店</h3><address>東京都港区北青山2-12-28 1F</address><p class="store-card__hours">OPEN 11:00–19:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス青山店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>アクタス・丸の内店</h3><address>東京都千代田区丸の内1-5-1<br />新丸の内ビルディング3F</address><p class="store-card__hours">OPEN 11:00–21:00（日祝20:00）</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス丸の内店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">04</span><h3>アクタス・豊洲店</h3><address>東京都江東区豊洲2-4-9<br />ららぽーと豊洲2F</address><p class="store-card__hours">OPEN 10:00–21:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス豊洲店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">05</span><h3>アクタス・ラゾーナ川崎店</h3><address>神奈川県川崎市幸区堀川町72-1<br />ラゾーナ川崎プラザ3F</address><p class="store-card__hours">OPEN 10:00–21:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタスラゾーナ川崎店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">06</span><h3>アクタス・幕張店</h3><address>千葉県千葉市美浜区豊砂1-1<br />イオンモール幕張新都心2F</address><p class="store-card__hours">OPEN 10:00–21:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス幕張店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="koshinetsu" aria-labelledby="koshinetsu-title">
+        <h2 class="store-region__heading" id="koshinetsu-title" data-reveal>甲信越エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>S.H.S・鳥屋野</h3><address>新潟県新潟市中央区女池南3-5-1</address><p class="store-card__hours">OPEN 10:30–19:00／不定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=S.H.S+鳥屋野" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>MATERIALS</h3><address>長野県松本市笹賀7570-10</address><p class="store-card__hours">OPEN 10:00–18:30／火曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=MATERIALS+松本" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>REALSIGN</h3><address>山梨県甲斐市竜王1002</address><p class="store-card__hours">OPEN 10:30–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=REALSIGN+山梨" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="tokai" aria-labelledby="tokai-title">
+        <h2 class="store-region__heading" id="tokai-title" data-reveal>東海・北陸エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・名古屋店</h3><address>愛知県名古屋市中村区名駅南1-27-2<br />日本生命笹島ビル1F</address><p class="store-card__hours">OPEN 11:00–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス名古屋店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>アクタス・金沢店</h3><address>石川県金沢市寺地1-32-34</address><p class="store-card__hours">OPEN 11:00–19:00／不定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス金沢店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>ARBO</h3><address>愛知県豊田市秋葉町4-7-1</address><p class="store-card__hours">OPEN 10:00–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=ARBO+豊田" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="kinki" aria-labelledby="kinki-title">
+        <h2 class="store-region__heading" id="kinki-title" data-reveal>近畿エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・京都店</h3><address>京都府京都市下京区水銀屋町620<br />COCON烏丸1F・2F</address><p class="store-card__hours">OPEN 11:00–19:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス京都店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>アクタス・梅田店</h3><address>大阪府大阪市北区大深町3-1<br />グランフロント大阪 北館1F</address><p class="store-card__hours">OPEN 11:00–21:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス梅田店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>アクタス・六甲店</h3><address>兵庫県神戸市灘区新在家南町1-2-1<br />サザンモール六甲内</address><p class="store-card__hours">OPEN 11:00–19:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス六甲店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="chugoku" aria-labelledby="chugoku-title">
+        <h2 class="store-region__heading" id="chugoku-title" data-reveal>中国・四国エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・岡山店</h3><address>岡山県岡山市北区問屋町9-101<br />タイルビル2F</address><p class="store-card__hours">OPEN 11:00–18:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス岡山店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>アクタス・広島店</h3><address>広島県広島市南区宇品海岸3-12-17</address><p class="store-card__hours">OPEN 11:00–18:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス広島店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>アクタス・松山店</h3><address>愛媛県松山市余戸南3-5-33</address><p class="store-card__hours">OPEN 11:00–18:30／火曜ほか定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス松山店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <section class="store-region" id="kyushu" aria-labelledby="kyushu-title">
+        <h2 class="store-region__heading" id="kyushu-title" data-reveal>九州・沖縄エリア</h2>
+        <div class="store-grid">
+          <article class="store-card" data-reveal><span class="store-card__number">01</span><h3>アクタス・福岡店</h3><address>福岡県福岡市中央区渡辺通4-1-36<br />BiVi福岡1F・2F</address><p class="store-card__hours">OPEN 平日11:00–19:00／土日祝10:00–19:00</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス福岡店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">02</span><h3>アクタス・熊本店</h3><address>熊本県菊池郡菊陽町津久礼2524-9</address><p class="store-card__hours">OPEN 11:00–19:00／水曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス熊本店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+          <article class="store-card" data-reveal><span class="store-card__number">03</span><h3>アクタス・沖縄店</h3><address>沖縄県宜野湾市新城2-39-8 1F</address><p class="store-card__hours">OPEN 11:00–19:00／火曜定休</p><a class="store-card__map" href="https://www.google.com/maps/search/?api=1&query=アクタス沖縄店" target="_blank" rel="noopener noreferrer">Google Map</a></article>
+        </div>
+      </section>
+
+      <p class="store-note">掲載情報はページ制作のための仮情報です。住所・営業時間はACTUS公式店舗情報を参考にしています。実際の営業状況・Shippo製品の取り扱い状況は各店舗へご確認ください。</p>
+    </div>
+
+    <section class="subpage-cta" aria-labelledby="stores-contact-title">
+      <div class="container subpage-cta__inner" data-reveal>
+        <p>Contact</p>
+        <h2 id="stores-contact-title">お近くの店舗が見つからないときは、<br />お気軽にご相談ください。</h2>
+        <a class='pill-button pill-button--ghost' href='/contact'>お問い合わせフォームへ <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <a class='site-footer__logo' href='/'>Shippo</a>
+      <div class="site-footer__info"><p>Tokyo, Japan</p><a href="mailto:hello@example.com">hello@example.com</a></div>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション"><a href='/#about'>About</a><a href='/products'>Products</a><a href='/news'>News</a><a href='/stores'>Stores</a><a href='/contact'>Contact</a></nav>
+    </div>
+    <div class="site-footer__bottom"><small>© 2026 Shippo</small><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,320 @@
+/* トップのヒーロー専用。サイト共通のスタイルは site.css */
+
+:root {
+  --forest: #2d4236;
+  --snow-white: #f2f4f7;
+  --p-snow: 0;
+
+  /* スクロール量から main.js が毎フレーム入れる 0〜1 の出現量。
+     時間ベースのtransitionを使わないので、巻き戻せばそのまま逆再生される */
+  --p-mark: 0;
+  --p-tag: 0;
+  --p-foot: 0;
+}
+
+/* プリロード中はスクロールを止める */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+.scroll-track {
+  position: relative;
+  height: 400vh;
+  background: #000;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.stage__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* --- サイト共通ヘッダーをヒーローに馴染ませる -----------------------------
+   このファイルはトップページでしか読み込まないので、サブページのヘッダーは
+   style.css のまま（常時表示）になる */
+
+/* ヘッダーは最初から出しておく(サブページへの導線なので隠さない)。
+   雪景色の上に載るため、白ではなく深緑で表示する */
+.site-header {
+  color: var(--forest);
+}
+
+/* --- スマホ専用: 終盤で雪が積もって画面を埋める --------------------------- */
+
+.snow {
+  position: absolute;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .snow {
+    display: block;
+  }
+}
+
+/* 降る雪と吹きだまりは main.js の initSnowfield が canvas に描く */
+.snow__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 最後に画面を白で埋めきる */
+.snow__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--snow-white);
+  opacity: clamp(0, calc((var(--p-snow) - 0.6) / 0.4), 1);
+}
+
+/* --- スクロール終盤で霧から浮き出るブランドレイアウト --------------------- */
+
+.hero-ui {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  /* 上段はサイト共通ヘッダーが重なるぶんの余白 */
+  grid-template-rows: var(--header-height, 70px) 1fr auto;
+  padding: clamp(24px, 4vw, 56px);
+  color: var(--forest);
+  pointer-events: none;
+}
+
+.hero-ui.is-interactive {
+  pointer-events: auto;
+}
+
+.hero__mark {
+  display: block;
+  aspect-ratio: 577 / 205;
+  background-color: var(--forest);
+  /* 支給ロゴは単色PNGなので、マスクとして使ってブランドカラーに置き換える */
+  -webkit-mask: url("assets/shippo-logo.png") center / contain no-repeat;
+  mask: url("assets/shippo-logo.png") center / contain no-repeat;
+}
+
+.hero__center {
+  /* 明示しないと自動配置でヘッダー用の1行目に落ちる */
+  grid-row: 2;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vw, 30px);
+  padding-left: clamp(0px, 2vw, 34px);
+}
+
+.hero__mark--large {
+  width: clamp(240px, 28vw, 384px);
+  opacity: var(--p-mark);
+  transform: translateY(calc((1 - var(--p-mark)) * 24px));
+  filter: blur(calc((1 - var(--p-mark)) * 10px));
+  will-change: transform, opacity, filter;
+}
+
+.hero__tagline {
+  margin: 0;
+  font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(13px, 1.15vw, 16px);
+  letter-spacing: 0.42em;
+  color: var(--forest);
+  opacity: var(--p-tag);
+  transform: translateY(calc((1 - var(--p-tag)) * 18px));
+  filter: blur(calc((1 - var(--p-tag)) * 6px));
+}
+
+.hero__foot {
+  grid-row: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  opacity: var(--p-foot);
+  transform: translateY(calc((1 - var(--p-foot)) * 16px));
+}
+
+.hero__est {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  opacity: 0.85;
+}
+
+.hero__scroll {
+  display: grid;
+  place-items: center;
+  min-width: 118px;
+  padding: 15px 26px;
+  border: 1px solid rgba(45, 66, 54, 0.45);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--forest);
+  text-decoration: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+  background: rgba(45, 66, 54, 0.08);
+  border-color: rgba(45, 66, 54, 0.85);
+}
+
+/* スマホは雪で埋まった白面の上に、中央からロゴが浮かぶ構成にする。
+   ナビは上部ではなく下段に回して、中央のロゴを主役にする */
+@media (max-width: 767px) {
+  .hero-ui {
+    row-gap: 20px;
+    padding: 28px 24px 32px;
+  }
+
+  .hero__center {
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+    gap: 22px;
+  }
+
+  .hero__mark--large {
+    width: min(72vw, 320px);
+  }
+
+  .hero__tagline {
+    letter-spacing: 0.28em;
+  }
+
+  .hero__foot {
+    align-items: center;
+  }
+
+  .hero__scroll {
+    min-width: 96px;
+    padding: 12px 18px;
+  }
+}
+
+/* --- ローディング --------------------------------------------------------- */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  /* サイト共通ヘッダー(50)・ドロワー(40)より前面 */
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #000;
+  transition: opacity 0.8s ease;
+}
+
+.loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader__bar {
+  width: min(200px, 50vw);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.loader__bar > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #fff;
+  transition: width 0.2s ease;
+}
+
+.loader__count {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- スクロール前のヒント ------------------------------------------------- */
+
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--forest);
+  opacity: 0.75;
+  transition: opacity 0.6s ease;
+}
+
+.scroll-hint.is-hidden {
+  opacity: 0;
+}
+
+.scroll-hint__label {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.scroll-hint__line {
+  width: 1px;
+  height: 56px;
+  background: rgba(45, 66, 54, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-hint__line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--forest);
+  transform-origin: top;
+  animation: scroll-hint-line 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes scroll-hint-line {
+  0% {
+    transform: scaleY(0) translateY(0);
+  }
+  40% {
+    transform: scaleY(1) translateY(0);
+  }
+  100% {
+    transform: scaleY(1) translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint__line::after {
+    animation: none;
+    transform: scaleY(1);
+  }
+
+  .hero__head,
+  .hero__mark--large,
+  .hero__tagline,
+  .hero__foot {
+    transform: none;
+    filter: none;
+  }
+}

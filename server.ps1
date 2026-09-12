@@ -25,6 +25,11 @@ while ($listener.IsListening) {
   try {
     $path = [System.Uri]::UnescapeDataString($request.Url.AbsolutePath)
     if ($path -eq "/") { $path = "/index.html" }
+    # Netlify と同じく拡張子なしのURLを .html に解決する (/products -> products.html)
+    if (-not [System.IO.Path]::HasExtension($path)) {
+      $candidate = [System.IO.Path]::GetFullPath((Join-Path $root ($path.TrimStart("/") + ".html")))
+      if (Test-Path $candidate -PathType Leaf) { $path = $path + ".html" }
+    }
     $filePath = [System.IO.Path]::GetFullPath((Join-Path $root ($path.TrimStart("/"))))
 
     if (-not $filePath.StartsWith($root)) {

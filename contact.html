@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shippoへのお問い合わせフォームです。" />
+  <title>お問い合わせ | Shippo</title>
+  <script>document.documentElement.classList.add("has-js");</script>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./subpage.css" />
+  <script defer src="./navigation.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="./subpage.js"></script>
+</head>
+
+<body class="subpage" id="top">
+  <header class="site-header" data-header>
+    <a aria-label='Shippo トップへ' class='site-header__logo' href='/'>Shippo</a>
+    <nav class="site-header__nav" aria-label="メインナビゲーション">
+      <a href='/#about'>About</a>
+      <a href='/products'>Products</a>
+      <a href='/news'>News</a>
+      <a href='/stores'>Stores</a>
+      <a aria-current='page' href='/contact'>Contact</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="メニューを開く" aria-controls="drawer-menu" aria-expanded="false" data-menu-open><span></span><span></span></button>
+  </header>
+
+  <div class="drawer-menu" id="drawer-menu" aria-hidden="true" data-drawer>
+    <div class="drawer-menu__body">
+      <nav class="drawer-menu__nav" aria-label="ドロワーナビゲーション">
+        <a href='/'><span>ホーム</span><small>Home</small></a>
+        <a href='/#about'><span>私たちについて</span><small>About</small></a>
+        <a href='/products'><span>プロダクト</span><small>Products</small></a>
+        <a href='/news'><span>日々の便り</span><small>News</small></a>
+        <a href='/stores'><span>取り扱い店舗</span><small>Stores</small></a>
+        <a aria-current='page' href='/contact'><span>お問い合わせ</span><small>Contact</small></a>
+      </nav>
+      <div class="drawer-menu__footer">
+        <address class="drawer-menu__info"><strong>Shippo Inc.</strong><span>2-10-4 Aoyama, Minato-ku, Tokyo</span><a href="tel:+81300000000">03-0000-0000</a><a href="mailto:hello@example.com">hello@example.com</a></address>
+        <div class="drawer-menu__social" aria-label="ソーシャルメディア"><a href="#" aria-label="Instagram">Ig</a><a href="#" aria-label="X">X</a><a href="#" aria-label="Facebook">Fb</a></div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="subpage-hero" aria-labelledby="page-title">
+      <div class="subpage-hero__media" aria-hidden="true"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=85&w=1800" alt="" onerror="this.style.display='none'" /></div>
+      <h1 class="subpage-hero__title" id="page-title"><span>お問い合わせ</span></h1>
+      <p class="subpage-hero__index">CONTACT / 02</p>
+    </section>
+
+    <section class="container page-intro" aria-labelledby="contact-intro-title">
+      <p class="page-intro__label" data-reveal>Contact</p>
+      <div class="page-intro__body" data-reveal>
+        <h2 id="contact-intro-title">まだ名前のない風景を、<br />一緒につくりませんか。</h2>
+        <p>プロダクト、法人のお取引、取材・採用について。内容に応じて担当者よりご連絡いたします。まずは、いま考えていることをお聞かせください。</p>
+      </div>
+    </section>
+
+    <section class="container contact-layout" aria-labelledby="form-title">
+      <aside class="contact-aside" data-reveal>
+        <p class="contact-aside__label">Inquiry form</p>
+        <h2 id="form-title">お問い合わせ<br />フォーム</h2>
+        <p>通常3営業日以内に返信いたします。<br />お急ぎの場合は、お電話でご連絡ください。</p>
+        <div class="contact-aside__details"><span>Weekdays / 10:00–18:00</span><a href="tel:+81300000000">03-0000-0000</a><a href="mailto:hello@example.com">hello@example.com</a></div>
+      </aside>
+
+      <form class="contact-form" action="#" method="post" data-contact-form data-reveal>
+        <div class="form-field form-field--choices">
+          <fieldset>
+            <legend>お問い合わせ種別<span class="form-field__required">必須</span></legend>
+            <div class="choice-list">
+              <label><input type="radio" name="category" value="product" required />製品について</label>
+              <label><input type="radio" name="category" value="business" />法人・お取引について</label>
+              <label><input type="radio" name="category" value="press" />取材・広報について</label>
+              <label><input type="radio" name="category" value="other" />その他</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-field"><label for="name">お名前<span class="form-field__required">必須</span></label><input id="name" name="name" type="text" autocomplete="name" required /></div>
+        <div class="form-field"><label for="company">会社名・団体名</label><input id="company" name="company" type="text" autocomplete="organization" /></div>
+        <div class="form-field"><label for="email">メールアドレス<span class="form-field__required">必須</span></label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required /></div>
+        <div class="form-field"><label for="phone">電話番号</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" /></div>
+        <div class="form-field"><label for="subject">件名<span class="form-field__required">必須</span></label><input id="subject" name="subject" type="text" required /></div>
+        <div class="form-field"><label for="message">お問い合わせ内容<span class="form-field__required">必須</span></label><textarea id="message" name="message" required></textarea></div>
+        <label class="form-consent"><input type="checkbox" name="privacy" required /><span>プライバシーポリシーを確認し、個人情報の取り扱いに同意します。</span></label>
+        <button class="form-submit" type="submit"><span>入力内容を送信する</span><span aria-hidden="true">→</span></button>
+        <p class="form-status" role="status" tabindex="-1" data-form-status>お問い合わせを受け付けました。これはデモフォームのため、実際の送信は行われていません。</p>
+      </form>
+    </section>
+
+    <section class="subpage-cta" aria-labelledby="stores-link-title">
+      <div class="container subpage-cta__inner" data-reveal><p>Stockists</p><h2 id="stores-link-title">プロダクトを実際に手に取り、<br />質感をお確かめいただけます。</h2><a class='pill-button pill-button--ghost' href='/stores'>国内取り扱い店舗を見る <span aria-hidden="true">→</span></a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top"><a class='site-footer__logo' href='/'>Shippo</a><div class="site-footer__info"><p>Tokyo, Japan</p><a href="mailto:hello@example.com">hello@example.com</a></div><nav class="site-footer__nav" aria-label="フッターナビゲーション"><a href='/#about'>About</a><a href='/products'>Products</a><a href='/news'>News</a><a href='/stores'>Stores</a><a href='/contact'>Contact</a></nav></div>
+    <div class="site-footer__bottom"><small>© 2026 Shippo</small><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a></div>
+  </footer>
+</body>
+</html>

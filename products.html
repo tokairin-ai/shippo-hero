@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shippoの無垢材でつくるキッチンプロダクト一覧。" />
+  <title>すべてのプロダクト | Shippo</title>
+  <script>document.documentElement.classList.add("has-js");</script>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./subpage.css" />
+  <link rel="stylesheet" href="./catalog.css" />
+  <script defer src="./navigation.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="./subpage.js"></script>
+  <script defer src="./catalog.js"></script>
+</head>
+
+<body class="subpage catalog-page" id="top">
+  <header class="site-header" data-header>
+    <a aria-label='Shippo トップへ' class='site-header__logo' href='/'>Shippo</a>
+    <nav class="site-header__nav" aria-label="メインナビゲーション">
+      <a href='/#about'>About</a>
+      <a aria-current='page' href='/products'>Products</a>
+      <a href='/news'>News</a>
+      <a href='/stores'>Stores</a>
+      <a href='/contact'>Contact</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="メニューを開く" aria-controls="drawer-menu" aria-expanded="false" data-menu-open><span></span><span></span></button>
+  </header>
+  <div class="drawer-menu" id="drawer-menu" aria-hidden="true" data-drawer>
+    <div class="drawer-menu__body">
+      <nav class="drawer-menu__nav" aria-label="ドロワーナビゲーション">
+        <a href='/'><span>ホーム</span><small>Home</small></a>
+        <a href='/#about'><span>私たちについて</span><small>About</small></a>
+        <a aria-current='page' href='/products'><span>プロダクト</span><small>Products</small></a>
+        <a href='/news'><span>日々の便り</span><small>News</small></a>
+        <a href='/stores'><span>取り扱い店舗</span><small>Stores</small></a>
+        <a href='/contact'><span>お問い合わせ</span><small>Contact</small></a>
+      </nav>
+      <div class="drawer-menu__footer"><address class="drawer-menu__info"><strong>Shippo Inc.</strong><span>2-10-4 Aoyama, Minato-ku, Tokyo</span><a href="tel:+81300000000">03-0000-0000</a><a href="mailto:hello@example.com">hello@example.com</a></address></div>
+    </div>
+  </div>
+
+  <main>
+    <section class="catalog-hero" aria-labelledby="page-title">
+      <div class="catalog-hero__media"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=85&w=1800" alt="無垢材の道具が並ぶ明るいキッチン" onerror="this.style.display='none'" /></div>
+      <div class="catalog-hero__copy"><p class="catalog-hero__eyebrow">Collection</p><h1 id="page-title">すべてのプロダクト</h1><p class="catalog-hero__foot">PRODUCTS / 01—09</p></div>
+    </section>
+
+    <section class="container catalog-intro" aria-labelledby="collection-title">
+      <p class="editorial-label" data-catalog-reveal>Made for everyday</p>
+      <div data-catalog-reveal><h2 id="collection-title">毎日使うものだから、<br />木のままで。</h2><p class="catalog-intro__text">国産の無垢材を選び、手の跡がわずかに残るよう仕上げたキッチンツール。使うほどに色艶を増し、暮らしの一部になっていきます。</p></div>
+    </section>
+
+    <div class="filter-bar" aria-label="商品カテゴリー">
+      <div class="container filter-bar__inner">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-filter="cutting" aria-pressed="false">Cutting boards</button>
+        <button class="filter-button" type="button" data-filter="utensil" aria-pressed="false">Utensils</button>
+        <button class="filter-button" type="button" data-filter="tray" aria-pressed="false">Trays</button>
+      </div>
+    </div>
+
+    <section class="container product-listing" aria-label="商品一覧">
+      <p class="product-listing__count" data-result-count>09 PRODUCTS</p>
+      <div class="catalog-grid">
+        <a class='catalog-card' data-catalog-reveal data-category='cutting' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1709342320715-6b6d4ffd8c83?auto=format&fit=crop&q=85&w=900" alt="楓のまな板" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Cutting board</span><span>01</span></div><h2>楓のまな板</h2><p>Maple / S・M・L</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='cutting' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=85&w=900" alt="山桜のカッティングボード" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Cutting board</span><span>02</span></div><h2>山桜のカッティングボード</h2><p>Wild cherry / M・L</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='cutting' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=85&w=900" alt="胡桃のブレッドボード" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Cutting board</span><span>03</span></div><h2>胡桃のブレッドボード</h2><p>Walnut / One size</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='utensil' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&q=85&w=900" alt="山桜のおたま" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Utensil</span><span>04</span></div><h2>山桜のおたま</h2><p>Wild cherry / 270 mm</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='utensil' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=85&w=900" alt="栗のターナー" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Utensil</span><span>05</span></div><h2>栗のターナー</h2><p>Chestnut / 300 mm</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='utensil' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=85&w=900" alt="朴のスパチュラ" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Utensil</span><span>06</span></div><h2>朴のスパチュラ</h2><p>Magnolia / 260 mm</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='tray' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&q=85&w=900" alt="栓の長角盆" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Tray</span><span>07</span></div><h2>栓の長角盆</h2><p>Sen / S・M</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='tray' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=85&w=900" alt="楢の丸盆" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Tray</span><span>08</span></div><h2>楢の丸盆</h2><p>Oak / φ300 mm</p></a>
+        <a class='catalog-card' data-catalog-reveal data-category='tray' href='/product'><figure class="catalog-card__media"><img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=85&w=900" alt="胡桃のカフェトレー" loading="lazy" onerror="this.style.display='none'" /></figure><div class="catalog-card__meta"><span>Tray</span><span>09</span></div><h2>胡桃のカフェトレー</h2><p>Walnut / One size</p></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__top"><a class='site-footer__logo' href='/'>Shippo</a><div class="site-footer__info"><p>Tokyo, Japan</p><a href="mailto:hello@example.com">hello@example.com</a></div><nav class="site-footer__nav" aria-label="フッターナビゲーション"><a href='/products'>Products</a><a href='/news'>News</a><a href='/stores'>Stores</a><a href='/contact'>Contact</a></nav></div><div class="site-footer__bottom"><small>© 2026 Shippo</small><a href="#top">Back to top ↑</a></div></footer>
+</body>
+</html>

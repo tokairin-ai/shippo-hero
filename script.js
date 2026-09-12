@@ -7,9 +7,11 @@ const drawerLinks = drawer.querySelectorAll("a");
 
 const heroTrack = document.querySelector("[data-scrub-track]");
 
-// ヒーローの間は透明のまま重ねておき、抜けてから白背景に変える
+// トップはヒーローを抜けてから白背景にする。ヒーローが無いページは従来どおり
 const updateHeader = () => {
-  const threshold = heroTrack ? heroTrack.offsetHeight - window.innerHeight * 0.5 : 24;
+  const threshold = heroTrack
+    ? heroTrack.offsetHeight - window.innerHeight * 0.5
+    : 24;
   header.classList.toggle("site-header--scrolled", window.scrollY > threshold);
 };
 
@@ -96,69 +98,8 @@ const prefersReducedMotion = window.matchMedia(
 ).matches;
 
 if (!prefersReducedMotion) {
-  const heroTimeline = gsap.timeline({
-    defaults: {
-      ease: "power3.out",
-    },
-  });
-
-  heroTimeline
-    .from(".site-header", {
-      y: -18,
-      opacity: 0,
-      duration: 0.8,
-    })
-    .from(
-      ".hero__media",
-      {
-        scale: 1.18,
-        filter: "blur(8px)",
-        duration: 1.8,
-      },
-      0
-    )
-    .from(
-      ".hero__eyebrow",
-      {
-        y: 16,
-        opacity: 0,
-        filter: "blur(8px)",
-        duration: 0.9,
-      },
-      0.25
-    )
-    .from(
-      ".hero__title span",
-      {
-        yPercent: 65,
-        opacity: 0,
-        filter: "blur(14px)",
-        stagger: 0.12,
-        duration: 1.15,
-      },
-      0.4
-    )
-    .from(
-      ".hero__lead, .hero__scroll",
-      {
-        y: 20,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-      },
-      0.9
-    );
-
-  gsap.to(".hero__media", {
-    yPercent: 10,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: 1,
-    },
-  });
+  // 家の写真のヒーローは削除したため、その導入アニメーションも撤去した。
+  // ヘッダーの出現は hero.css の --p-head が担当する(GSAPが触るとinline styleで固定されてしまう)
 
   const initializeScrollReveals = () => {
     gsap.utils.toArray(".reveal-blur").forEach((element) => {
@@ -376,17 +317,151 @@ if (!prefersReducedMotion) {
     }
   });
 
-  gsap.to(".product-card", {
-    y: 0,
-    opacity: 1,
-    stagger: 0.14,
-    duration: 1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: ".products__grid",
-      start: "top 82%",
-      once: true,
-    },
+  const productCards = gsap.utils.toArray(".product-card");
+  const productsMotion = gsap.matchMedia();
+
+  productsMotion.add("(min-width: 834px)", () => {
+    const productsTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".products",
+        start: "top top",
+        end: "+=2200",
+        pin: ".products__stage",
+        scrub: 0.75,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    gsap.set(productCards, {
+      y: "16vh",
+      scale: 0.965,
+      opacity: 0,
+      filter: "blur(10px)",
+    });
+
+    gsap.set(".products__guide-line", {
+      scaleX: 0,
+    });
+
+    productsTimeline
+      .to({}, { duration: 0.55 })
+      .to(productCards[0], {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.9,
+        ease: "power2.out",
+      })
+      .to({}, { duration: 0.28 })
+      .to(productCards[1], {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.9,
+        ease: "power2.out",
+      })
+      .to({}, { duration: 0.28 })
+      .to(productCards[2], {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.9,
+        ease: "power2.out",
+      })
+      .to(".product-card__media img", {
+        scale: 1.025,
+        stagger: 0.08,
+        duration: 0.7,
+        ease: "none",
+      })
+      .to({}, { duration: 0.75 });
+
+    productsTimeline.to(".products__guide-line", {
+      scaleX: 1,
+      duration: productsTimeline.duration(),
+      ease: "none",
+    }, 0);
+  });
+
+  productsMotion.add("(max-width: 833px)", () => {
+    const mobileProductsTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".products",
+        start: "top top",
+        end: "+=2400",
+        pin: ".products__stage",
+        scrub: 0.7,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    gsap.set(productCards, {
+      y: "12vh",
+      scale: 0.97,
+      autoAlpha: 0,
+      filter: "blur(9px)",
+    });
+
+    gsap.set(".products__guide-line", {
+      scaleX: 0,
+    });
+
+    mobileProductsTimeline
+      .to({}, { duration: 0.5 })
+      .to(productCards[0], {
+        y: 0,
+        scale: 1,
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 0.85,
+        ease: "power2.out",
+      })
+      .to({}, { duration: 0.5 })
+      .to(productCards[0], {
+        y: "-5vh",
+        scale: 0.985,
+        autoAlpha: 0,
+        filter: "blur(5px)",
+        duration: 0.55,
+        ease: "power2.in",
+      })
+      .to(productCards[1], {
+        y: 0,
+        scale: 1,
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 0.85,
+        ease: "power2.out",
+      }, "<0.2")
+      .to({}, { duration: 0.5 })
+      .to(productCards[1], {
+        y: "-5vh",
+        scale: 0.985,
+        autoAlpha: 0,
+        filter: "blur(5px)",
+        duration: 0.55,
+        ease: "power2.in",
+      })
+      .to(productCards[2], {
+        y: 0,
+        scale: 1,
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 0.85,
+        ease: "power2.out",
+      }, "<0.2")
+      .to({}, { duration: 0.9 });
+
+    mobileProductsTimeline.to(".products__guide-line", {
+      scaleX: 1,
+      duration: mobileProductsTimeline.duration(),
+      ease: "none",
+    }, 0);
   });
 
   gsap.fromTo(
