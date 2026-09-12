@@ -3,4 +3,5 @@ Thumbs.db
 desktop.ini
 *.tmp.*
 node_modules/
+_site/
 .env
