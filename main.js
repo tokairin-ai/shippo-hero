@@ -216,15 +216,18 @@ function initScrollScrubFrames({ track, canvas, images, heroUi, snowfield, onPro
     const outro = clamp01((displayed - OUTRO_START) / (1 - OUTRO_START));
     const reveal = narrow ? REVEAL.narrow : REVEAL.wide;
 
+    const headP = easeOut(rangeAt(outro, reveal.head));
     // 積もる量だけは等速。イーズをかけると途中で止まって見える
     const snowP = narrow ? rangeAt(outro, reveal.snow) : 0;
     root.style.setProperty("--p-snow", snowP.toFixed(4));
     snowfield.setAmount(snowP);
     root.style.setProperty("--p-mark", easeOut(rangeAt(outro, reveal.mark)).toFixed(4));
     root.style.setProperty("--p-tag", easeOut(rangeAt(outro, reveal.tag)).toFixed(4));
-    root.style.setProperty("--p-head", easeOut(rangeAt(outro, reveal.head)).toFixed(4));
+    root.style.setProperty("--p-head", headP.toFixed(4));
     root.style.setProperty("--p-foot", easeOut(rangeAt(outro, reveal.foot)).toFixed(4));
     heroUi.classList.toggle("is-interactive", outro > 0.92);
+    // ヘッダーが透明なあいだはクリックを通さない
+    root.classList.toggle("is-chrome-ready", headP > 0.5);
 
     if (onProgress) onProgress(displayed);
     draw(Math.round(displayed * (images.length - 1)));
@@ -275,7 +278,6 @@ const loader = document.querySelector("[data-loader]");
 const loaderBar = document.querySelector("[data-loader-bar]");
 const loaderCount = document.querySelector("[data-loader-count]");
 const hint = document.querySelector("[data-scroll-hint]");
-const progressBar = document.querySelector("[data-progress]");
 
 async function start() {
   history.scrollRestoration = "manual";
@@ -314,7 +316,6 @@ async function start() {
     snowfield: initSnowfield(document.querySelector("[data-snow-canvas]")),
     images,
     onProgress: (progress) => {
-      progressBar.style.width = `${progress * 100}%`;
       hint.classList.toggle("is-hidden", progress > 0.02);
     },
   });

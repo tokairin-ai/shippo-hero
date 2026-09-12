@@ -1,60 +1,263 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Shippo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Zen+Old+Mincho:wght@400;600&display=swap">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="しずかに、ちいさく、ながく。北海道のブランド Shippo。" />
+  <title>Shippo — しずかに、ちいさく、ながく</title>
+  <script>document.documentElement.classList.add("has-js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Zen+Old+Mincho:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="./site.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="./site.js"></script>
+  <script defer src="./main.js"></script>
 </head>
+
 <body>
   <div class="loader" data-loader>
     <div class="loader__bar"><span data-loader-bar></span></div>
     <p class="loader__count"><span data-loader-count>0</span>%</p>
   </div>
 
-  <div class="progress" data-progress aria-hidden="true"></div>
+  <header class="site-header" data-header>
+    <a class="site-header__logo" href="#top" aria-label="Shippo トップへ">Shippo</a>
+    <nav class="site-header__nav" aria-label="メインナビゲーション">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button
+      class="menu-button"
+      type="button"
+      aria-label="メニューを開く"
+      aria-controls="drawer-menu"
+      aria-expanded="false"
+      data-menu-open
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </header>
 
-  <div class="scroll-track" data-scrub-track>
-    <div class="stage">
-      <canvas class="stage__canvas" data-scrub-canvas></canvas>
-
-      <div class="snow" aria-hidden="true">
-        <canvas class="snow__canvas" data-snow-canvas></canvas>
-        <div class="snow__veil"></div>
-      </div>
-
-      <div class="hero-ui" data-hero-ui>
-        <header class="hero__head">
-          <a class="hero__mark hero__mark--small" href="#top" role="img" aria-label="Shippo"></a>
-          <nav class="hero__nav">
-            <a href="#about">ABOUT</a>
-            <a href="#products">PRODUCTS</a>
-            <a href="#journal">JOURNAL</a>
-            <a href="#contact">CONTACT</a>
-          </nav>
-        </header>
-
-        <div class="hero__center">
-          <div class="hero__mark hero__mark--large" role="img" aria-label="Shippo"></div>
-          <p class="hero__tagline">しずかに、ちいさく、ながく</p>
+  <div class="drawer-menu" id="drawer-menu" aria-hidden="true" data-drawer>
+    <div class="drawer-menu__body">
+      <nav class="drawer-menu__nav" aria-label="ドロワーナビゲーション">
+        <a href="#top"><span>ホーム</span><small>Home</small></a>
+        <a href="#about"><span>私たちについて</span><small>About</small></a>
+        <a href="#products"><span>プロダクト</span><small>Products</small></a>
+        <a href="#news"><span>日々の便り</span><small>News</small></a>
+        <a href="#faq"><span>よくあるご質問</span><small>FAQ</small></a>
+        <a href="#contact"><span>お問い合わせ</span><small>Contact</small></a>
+      </nav>
+      <div class="drawer-menu__footer">
+        <address class="drawer-menu__info">
+          <strong>Shippo Inc.</strong>
+          <span>北海道</span>
+          <a href="tel:+81300000000">03-0000-0000</a>
+          <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+        <div class="drawer-menu__social" aria-label="ソーシャルメディア">
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="X">X</a>
+          <a href="#" aria-label="Facebook">Fb</a>
         </div>
-
-        <footer class="hero__foot">
-          <p class="hero__est">EST. 2026 / HOKKAIDO</p>
-          <a class="hero__scroll" href="#about">SCROLL</a>
-        </footer>
-      </div>
-
-      <div class="scroll-hint" data-scroll-hint aria-hidden="true">
-        <span class="scroll-hint__label">Scroll</span>
-        <span class="scroll-hint__line"></span>
       </div>
     </div>
   </div>
 
-  <script src="main.js"></script>
+  <main>
+    <div class="scroll-track" id="top" data-scrub-track>
+      <div class="stage">
+        <canvas class="stage__canvas" data-scrub-canvas></canvas>
+
+        <div class="snow" aria-hidden="true">
+          <canvas class="snow__canvas" data-snow-canvas></canvas>
+          <div class="snow__veil"></div>
+        </div>
+
+        <div class="hero-ui" data-hero-ui>
+          <div class="hero__center">
+            <div class="hero__mark hero__mark--large" role="img" aria-label="Shippo"></div>
+            <p class="hero__tagline">しずかに、ちいさく、ながく</p>
+          </div>
+
+          <footer class="hero__foot">
+            <p class="hero__est">EST. 2026 / HOKKAIDO</p>
+            <a class="hero__scroll" href="#about">SCROLL</a>
+          </footer>
+        </div>
+
+        <div class="scroll-hint" data-scroll-hint aria-hidden="true">
+          <span class="scroll-hint__label">Scroll</span>
+          <span class="scroll-hint__line"></span>
+        </div>
+      </div>
+    </div>
+
+    <section class="about" id="about" aria-label="私たちについて">
+      <div class="about__stage">
+        <article class="about-scene about-scene--01">
+          <p class="about-scene__number" aria-hidden="true">01</p>
+          <div class="about-scene__image">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=85&w=1400" alt="自然光が差し込む木を基調とした空間" />
+          </div>
+          <div class="about-scene__text">
+            <p class="section-heading__label">About 01 / Philosophy</p>
+            <h2>土地の記憶を、<br />かたちにする。</h2>
+            <p>その場所に流れる時間、育まれてきた文化、手に馴染む素材。目に見えない価値を丁寧にすくい上げ、暮らしの風景へと編み直します。</p>
+          </div>
+        </article>
+
+        <article class="about-scene about-scene--02">
+          <p class="about-scene__number" aria-hidden="true">02</p>
+          <div class="about-scene__image">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=85&w=1400" alt="チームでデザインを検討する様子" />
+          </div>
+          <div class="about-scene__text">
+            <p class="section-heading__label">About 02 / Practice</p>
+            <h2>対話から、<br />未来をひらく。</h2>
+            <p>つくり手、使い手、地域の人々。それぞれの声を重ねながら、空間からプロダクトまで、境界を越えて新しい日常を描きます。</p>
+          </div>
+        </article>
+
+        <p class="about__guide" aria-hidden="true">Scroll to explore</p>
+      </div>
+    </section>
+
+    <section class="section products" id="products" aria-labelledby="products-title">
+      <div class="container">
+        <div class="section-heading reveal-blur">
+          <p class="section-heading__label">Products</p>
+          <h2 id="products-title">暮らしに残るもの</h2>
+        </div>
+        <div class="products__grid">
+          <a class="product-card" href="#">
+            <figure class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&q=85&w=1200" alt="木製の椅子「凪」" />
+            </figure>
+            <div class="product-card__body">
+              <h3>Chair / 凪</h3>
+              <p>静かな輪郭と、やわらかな座り心地。</p>
+            </div>
+          </a>
+          <a class="product-card" href="#">
+            <figure class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=85&w=1200" alt="温かな光を灯す照明「灯」" />
+            </figure>
+            <div class="product-card__body">
+              <h3>Lamp / 灯</h3>
+              <p>夕暮れの光を、部屋の中へ。</p>
+            </div>
+          </a>
+          <a class="product-card" href="#">
+            <figure class="product-card__media">
+              <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&q=85&w=1200" alt="無垢材のテーブル「環」" />
+            </figure>
+            <div class="product-card__body">
+              <h3>Table / 環</h3>
+              <p>集う時間を受け止める、ひとつの円。</p>
+            </div>
+          </a>
+        </div>
+        <a class="pill-button pill-button--outline reveal-soft" href="#">すべてのプロダクトを見る <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="section news" id="news" aria-labelledby="news-title">
+      <div class="container container--narrow">
+        <div class="section-heading reveal-blur">
+          <p class="section-heading__label">News</p>
+          <h2 id="news-title">日々の便り</h2>
+        </div>
+        <div class="news__list">
+          <a class="news-item reveal-group" href="#">
+            <time datetime="2026-09-01">2026.09.01</time>
+            <span class="news-item__category">Journal</span>
+            <span class="news-item__title">秋の光と、木の手触りについて</span>
+            <span class="news-item__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="news-item reveal-group" href="#">
+            <time datetime="2026-08-18">2026.08.18</time>
+            <span class="news-item__category">Event</span>
+            <span class="news-item__title">東京・青山で展示会を開催します</span>
+            <span class="news-item__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="news-item reveal-group" href="#">
+            <time datetime="2026-07-24">2026.07.24</time>
+            <span class="news-item__category">Products</span>
+            <span class="news-item__title">新しいプロダクト「灯」が生まれました</span>
+            <span class="news-item__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <div class="section-heading reveal-blur">
+          <p class="section-heading__label">FAQ</p>
+          <h2 id="faq-title">よくあるご質問</h2>
+        </div>
+        <div class="faq__list">
+          <details class="faq-item reveal-group">
+            <summary><span>01</span>相談から完成まで、どのくらいかかりますか？</summary>
+            <p>内容や規模により異なりますが、プロダクトは3〜6か月、空間設計は6〜12か月ほどを目安にしています。</p>
+          </details>
+          <details class="faq-item reveal-group">
+            <summary><span>02</span>遠方からでも依頼できますか？</summary>
+            <p>はい。オンラインでの打ち合わせを組み合わせ、日本全国のプロジェクトに対応しています。</p>
+          </details>
+          <details class="faq-item reveal-group">
+            <summary><span>03</span>既存商品のカスタマイズは可能ですか？</summary>
+            <p>素材や寸法など、ご希望に合わせてご提案します。まずはお問い合わせフォームからご相談ください。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact__media" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1774709540246-d3c45850a192?auto=format&fit=crop&q=85&w=2000"
+          alt=""
+          loading="lazy"
+        />
+      </div>
+      <div class="contact__inner reveal-text-group">
+        <p class="section-heading__label">Contact</p>
+        <h2 id="contact-title">まだ名前のない風景を、<br />一緒につくりませんか。</h2>
+        <p>プロジェクトのご相談、取材、協業について、お気軽にお聞かせください。</p>
+        <a class="pill-button pill-button--ghost contact__button" href="mailto:hello@example.com">
+          <span>お問い合わせ</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <a class="site-footer__logo" href="#top">Shippo</a>
+      <div class="site-footer__info">
+        <p>Hokkaido, Japan</p>
+        <a href="mailto:hello@example.com">hello@example.com</a>
+      </div>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#news">News</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <small>© 2026 Shippo</small>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
 </body>
 </html>
