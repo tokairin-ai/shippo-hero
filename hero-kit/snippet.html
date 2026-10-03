@@ -1,0 +1,38 @@
+<!--
+  Shippo Hero のマークアップ。<body> の先頭(固定ヘッダーの後)に貼り、
+  このブロックの直後に後続のセクションを並べる。
+  <head> には shippo-hero.css と shippo-hero.js(defer)を読み込む。README.md 参照。
+-->
+<div class="shippo-hero" id="top" data-shippo-hero>
+  <div class="shippo-hero__loader" aria-hidden="true">
+    <div class="shippo-hero__loader-bar"><span></span></div>
+    <p class="shippo-hero__loader-count"><span>0</span>%</p>
+  </div>
+
+  <div class="shippo-hero__stage">
+    <canvas class="shippo-hero__canvas"></canvas>
+
+    <div class="shippo-hero__snow" aria-hidden="true">
+      <canvas class="shippo-hero__snow-canvas"></canvas>
+      <div class="shippo-hero__snow-veil"></div>
+    </div>
+
+    <div class="shippo-hero__ui">
+      <div class="shippo-hero__center">
+        <h1 class="shippo-hero__mark" aria-label="Shippo"></h1>
+        <p class="shippo-hero__tagline">しずかに、ちいさく、ながく</p>
+      </div>
+
+      <div class="shippo-hero__foot">
+        <p class="shippo-hero__est">EST. 2026 / HOKKAIDO</p>
+        <!-- 後続セクションの id に変えると、そこへ飛ぶ。見つからなければヒーローの直後へスクロールする -->
+        <a class="shippo-hero__scroll" href="#next">SCROLL</a>
+      </div>
+    </div>
+
+    <div class="shippo-hero__hint" aria-hidden="true">
+      <span class="shippo-hero__hint-label">Scroll</span>
+      <span class="shippo-hero__hint-line"></span>
+    </div>
+  </div>
+</div>

@@ -10,20 +10,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Zen+Old+Mincho:wght@400;600&display=swap" />
   <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./hero.css" />
+  <link rel="stylesheet" href="./hero-kit/shippo-hero.css" />
+  <link rel="stylesheet" href="./home.css" />
   <script defer src="./navigation.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script defer src="./script.js"></script>
-  <script defer src="./hero.js"></script>
+  <script defer src="./hero-kit/shippo-hero.js"></script>
 </head>
 
 <body>
-  <div class="loader" data-loader>
-    <div class="loader__bar"><span data-loader-bar></span></div>
-    <p class="loader__count"><span data-loader-count>0</span>%</p>
-  </div>
-
   <header class="site-header" data-header>
     <a class="site-header__logo" href="#top" aria-label="Shippo トップへ">Shippo</a>
     <nav class="site-header__nav" aria-label="メインナビゲーション">
@@ -74,30 +70,36 @@
   </div>
 
   <main>
-    <div class="scroll-track" id="top" data-scrub-track>
-      <div class="stage">
-        <canvas class="stage__canvas" data-scrub-canvas></canvas>
+    <!-- 木のヒーロー。中身は hero-kit/ (snippet.html と同じ構造) -->
+    <div class="shippo-hero" id="top" data-shippo-hero>
+      <div class="shippo-hero__loader" aria-hidden="true">
+        <div class="shippo-hero__loader-bar"><span></span></div>
+        <p class="shippo-hero__loader-count"><span>0</span>%</p>
+      </div>
 
-        <div class="snow" aria-hidden="true">
-          <canvas class="snow__canvas" data-snow-canvas></canvas>
-          <div class="snow__veil"></div>
+      <div class="shippo-hero__stage">
+        <canvas class="shippo-hero__canvas"></canvas>
+
+        <div class="shippo-hero__snow" aria-hidden="true">
+          <canvas class="shippo-hero__snow-canvas"></canvas>
+          <div class="shippo-hero__snow-veil"></div>
         </div>
 
-        <div class="hero-ui" data-hero-ui>
-          <div class="hero__center">
-            <h1 class="hero__mark hero__mark--large" aria-label="Shippo"></h1>
-            <p class="hero__tagline">しずかに、ちいさく、ながく</p>
+        <div class="shippo-hero__ui">
+          <div class="shippo-hero__center">
+            <h1 class="shippo-hero__mark" aria-label="Shippo"></h1>
+            <p class="shippo-hero__tagline">しずかに、ちいさく、ながく</p>
           </div>
 
-          <div class="hero__foot">
-            <p class="hero__est">EST. 2026 / HOKKAIDO</p>
-            <a class="hero__scroll" href="#about">SCROLL</a>
+          <div class="shippo-hero__foot">
+            <p class="shippo-hero__est">EST. 2026 / HOKKAIDO</p>
+            <a class="shippo-hero__scroll" href="#about">SCROLL</a>
           </div>
         </div>
 
-        <div class="scroll-hint" data-scroll-hint aria-hidden="true">
-          <span class="scroll-hint__label">Scroll</span>
-          <span class="scroll-hint__line"></span>
+        <div class="shippo-hero__hint" aria-hidden="true">
+          <span class="shippo-hero__hint-label">Scroll</span>
+          <span class="shippo-hero__hint-line"></span>
         </div>
       </div>
     </div>

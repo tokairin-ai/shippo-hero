@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shippo Hero — デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600&display=swap" />
+
+  <!-- 1. ヒーローの CSS と JS -->
+  <link rel="stylesheet" href="./shippo-hero.css" />
+  <script defer src="./shippo-hero.js"></script>
+
+  <!-- ここから下はデモ用。後続セクションの例 -->
+  <style>
+    body {
+      margin: 0;
+      /* hidden にすると body がスクロールコンテナになり、ヒーローの sticky が効かなくなる */
+      overflow-x: clip;
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #333;
+    }
+    .demo-section {
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      gap: 12px;
+      padding-inline: 24px;
+      text-align: center;
+    }
+    .demo-section:nth-of-type(odd) { background: #eceeef; }
+    .demo-section h2 { margin: 0; font-weight: 400; font-size: clamp(28px, 4vw, 44px); }
+    .demo-section p { margin: 0; color: #767676; }
+    .demo-status {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 70;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font: 12px/1.6 ui-monospace, monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 2. ヒーロー本体(snippet.html と同じ) -->
+  <div class="shippo-hero" id="top" data-shippo-hero>
+    <div class="shippo-hero__loader" aria-hidden="true">
+      <div class="shippo-hero__loader-bar"><span></span></div>
+      <p class="shippo-hero__loader-count"><span>0</span>%</p>
+    </div>
+
+    <div class="shippo-hero__stage">
+      <canvas class="shippo-hero__canvas"></canvas>
+
+      <div class="shippo-hero__snow" aria-hidden="true">
+        <canvas class="shippo-hero__snow-canvas"></canvas>
+        <div class="shippo-hero__snow-veil"></div>
+      </div>
+
+      <div class="shippo-hero__ui">
+        <div class="shippo-hero__center">
+          <h1 class="shippo-hero__mark" aria-label="Shippo"></h1>
+          <p class="shippo-hero__tagline">しずかに、ちいさく、ながく</p>
+        </div>
+
+        <div class="shippo-hero__foot">
+          <p class="shippo-hero__est">EST. 2026 / HOKKAIDO</p>
+          <a class="shippo-hero__scroll" href="#next">SCROLL</a>
+        </div>
+      </div>
+
+      <div class="shippo-hero__hint" aria-hidden="true">
+        <span class="shippo-hero__hint-label">Scroll</span>
+        <span class="shippo-hero__hint-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 後続のセクションはヒーローの直後に並べるだけ -->
+  <main>
+    <section class="demo-section" id="next">
+      <h2>ここから後続のセクション</h2>
+      <p>ヒーローの直後に置いた要素が、静止した最終画面のあとにそのまま続きます。</p>
+    </section>
+    <section class="demo-section">
+      <h2>Section 2</h2>
+      <p>中身は自由に差し替えてください。</p>
+    </section>
+  </main>
+
+  <p class="demo-status" aria-live="polite">progress: 0.00</p>
+
+  <script>
+    // 4. (任意)ヒーローの進み具合を受け取る例。ヘッダーの切り替えなどに使える
+    const status = document.querySelector(".demo-status");
+    document.addEventListener("shippo-hero:progress", (e) => {
+      const p = e.detail.progress;
+      status.textContent = p >= 1 ? "complete — 最終画面で静止中" : `progress: ${p.toFixed(2)}`;
+    });
+  </script>
+</body>
+</html>

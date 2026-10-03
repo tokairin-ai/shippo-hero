@@ -8,7 +8,7 @@
 
 ## 起動
 
-`fetch` で `frames/manifest.json` を読むため、`file://` で直接開くと動かない。必ずHTTPで配信する。
+`fetch` で `hero-kit/frames/manifest.json` を読むため、`file://` で直接開くと動かない。必ずHTTPで配信する。
 
 Windows（Node / Python 不要）:
 
@@ -30,24 +30,24 @@ python3 -m http.server 8793
 |---|---|
 | `index.html` | トップページ（ヒーロー＋各セクション） |
 | `products/news/stores/contact.html` | サブページ |
-| `hero.css` / `hero.js` | **ヒーロー専用**。フレーム読み込み・スクロール同期・雪・出現演出 |
+| `hero-kit/` | **木のヒーロー一式**（CSS・JS・連番フレーム・ロゴ）。単体で他のページに組み込める。使い方は [hero-kit/README.md](hero-kit/README.md) |
+| `hero-kit/frames/` | 映像の連番 303枚（1920×1080 / webp q0.92 / 計24.8MB）と `manifest.json` |
+| `home.css` | トップページだけの上書き（ヒーロー上のヘッダーを深緑にする） |
 | `style.css` | サイト共通（ヘッダー・ドロワー・セクション・フッター） |
 | `script.js` | GSAP + ScrollTrigger のセクション演出、ドロワーメニュー |
 | `navigation.js` | ナビの英日ロールオーバー |
 | `catalog.css` / `catalog.js` / `subpage.css` / `subpage.js` | サブページ用 |
 | `docs-design-spec.md` | サイト側のデザイン仕様 |
-
-`hero.css` / `hero.js` はトップページでしか読み込まない。サブページは従来どおり動く。
-| `frames/frame_0001〜0303.webp` | 映像の連番（1920×1080 / webp q0.92 / 計24.8MB） |
-| `frames/manifest.json` | フレーム枚数。枚数を変えたらここを更新 |
-| `assets/shippo-logo.png` | ロゴ（単色PNG。CSSマスクで色を差し替えて使用） |
+| `assets/shippo-logo.png` | ヘッダー用ロゴ（単色PNG。CSSマスクで色を差し替えて使用） |
 | `videos/hero.mp4` | 連番の元素材（3840×2160 / 60fps / 5.06秒）。ページからは読み込まない |
 | `server.ps1` | ローカル確認用の静的サーバー |
 
+`hero-kit/` と `home.css` はトップページでしか読み込まない。サブページは従来どおり動く。
+
 ## 仕組み
 
-- 500vh のスクロール領域の中に `position: sticky` の stage を置き、画面に固定したまま canvas にフレームを描き替える。
-  うち末尾の1画面分は映像を進めず、組み上がった最終画面のまま静止してから次のセクションへ抜ける（`HOLD_SCREENS`）
+- 600vh のスクロール領域の中に `position: sticky` の stage を置き、画面に固定したまま canvas にフレームを描き替える。
+  うち末尾の2画面分は映像を進めず、組み上がった最終画面のまま静止してから次のセクションへ抜ける（`holdScreens`）
 - `progress = スクロール量 ÷ (トラック高さ − 画面高さ)` を 0〜1 にし、`frameIndex = round(progress × (枚数 − 1))`
 - スクロールに直接追従させず、`displayed` を毎フレーム少しずつ `target` に寄せて慣性を出している（`EASE`）
 - 先頭48枚だけ読み終えたらローディングを抜け、残りはバックグラウンドで読む。未着のフレームは直近のフレームで埋める
@@ -76,29 +76,30 @@ PC（写真全面の上にロゴが霧から浮き出る）:
 
 ## 調整ポイント
 
-`main.js` 冒頭:
+ヒーローの設定はすべて `hero-kit/` 側にある。詳しくは [hero-kit/README.md](hero-kit/README.md)。
 
-- `OUTRO_START` — 終盤の演出が始まる位置（0.7 = 70%）
-- `HOLD_SCREENS` — 組み上がったあと静止させる画面数（1 = 1画面分）。
-  変えたら `hero.css` の `.scroll-track` の高さも合わせる（スクラブ3画面 + HOLD_SCREENS）
-- `REVEAL.wide` / `REVEAL.narrow` — PC / スマホそれぞれの出現区間
-- `EASE` — スクロールへの追従の速さ（小さいほど慣性が強い）
-- `FOCUS` — 写真のクロップ位置（object-position 相当）
-- `PRIORITY_COUNT` — ローディングで待つ枚数
+`hero-kit/shippo-hero.js` 冒頭の `DEFAULTS`（`index.html` の `data-*` 属性でも上書きできる）:
 
-`initSnowfield()` 内: `WIND`（横風）、`resize()` の `130`（粒数）、`spawn()`（粒の大きさ・速さ）
+- `outroStart` — 終盤の演出が始まる位置（0.7 = 70%）
+- `holdScreens` — 組み上がったあと静止させる画面数（2 = 2画面分）。ヒーローの高さは CSS 側で自動的に揃う
+- `ease` — スクロールへの追従の速さ（小さいほど慣性が強い）
+- `focus` — 写真のクロップ位置（object-position 相当）
+- `priorityCount` — ローディングで待つ枚数
 
-`style.css` の `:root`: `--forest`（ロゴ・文字色 #2D4236）、`--snow-white`（雪面の白）
+同じファイルの `REVEAL.wide` / `REVEAL.narrow`（PC / スマホそれぞれの出現区間）、
+`initSnowfield()` 内の `WIND`（横風）、`resize()` の `130`（粒数）、`spawn()`（粒の大きさ・速さ）
+
+`hero-kit/shippo-hero.css` の `.shippo-hero`: `--shippo-hero-color`（ロゴ・文字色 #2D4236）、`--shippo-hero-snow`（雪面の白）
 
 ## フレームの再生成
 
 映像を差し替える場合（要 ffmpeg）:
 
 ```bash
-ffmpeg -i videos/hero.mp4 -vf "fps=60,scale=1920:-2" -c:v libwebp -quality 92 -compression_level 6 frames/frame_%04d.webp
+ffmpeg -i videos/hero.mp4 -vf "fps=60,scale=1920:-2" -c:v libwebp -quality 92 -compression_level 6 hero-kit/frames/frame_%04d.webp
 ```
 
-書き出した枚数を `frames/manifest.json` の `count` に反映する。
+書き出した枚数を `hero-kit/frames/manifest.json` の `count` に反映する。
 
 **解像度は1920が上限。** 2560×1440 ではフレーム1枚のデコードに17.4msかかり、60fps の予算（16.7ms）を超えてカクつく（実測）。容量を減らしたいときは解像度ではなく品質を下げる（q0.85で約16MB、q0.80で約13MB）。
 
@@ -110,8 +111,8 @@ ffmpeg -i videos/hero.mp4 -vf "fps=60,scale=1920:-2" -c:v libwebp -quality 92 -c
 ## ヒーローとサイトの繋ぎ方
 
 - サイト共通ヘッダーは**最初から表示**する（サブページへの導線なので隠さない）。
-  雪景色に載るため、トップでは `hero.css` で深緑に上書きしている
-- ヘッダーの白背景への切り替え（`.site-header--scrolled`）は、ヒーローを抜けてから効く（`script.js`）。
+  雪景色に載るため、トップでは `home.css` で深緑に上書きしている
+- ヘッダーの白背景への切り替え（`.site-header--scrolled`）は、ヒーロー（`[data-shippo-hero]`）を抜けてから効く（`script.js`）。
   サブページにはヒーローが無いので従来どおり 24px で切り替わる
 - ヘッダーのロゴは単色PNGをマスクにして `currentColor` で塗っているので、
   ヒーロー上では深緑、白背景では本文色に自動で切り替わる
@@ -129,4 +130,4 @@ ffmpeg -i videos/hero.mp4 -vf "fps=60,scale=1920:-2" -c:v libwebp -quality 92 -c
 - [ ] ローディング画面のデザイン（今は1pxのバーと%表示だけの仮組み）
 - [ ] ロゴをSVGに差し替える（今は単色PNGをマスクとして使っている）
 - [ ] 24.8MB のプリロードを実際のモバイル回線で計測する
-- [ ] React / Next.js への移植。`main.js` は DOM 要素を引数で受け取る作りなので、`useEffect` 内で `initScrollScrubFrames` と `initSnowfield` を呼べばそのまま動く
+- [ ] React / Next.js への移植。ヒーローは `data-shippo-hero="manual"` にして、`useEffect` 内で `window.ShippoHero.mount(el)`、後片付けで `destroy()` を呼べばそのまま動く

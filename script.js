@@ -5,7 +5,7 @@ const drawer = document.querySelector("[data-drawer]");
 const menuOpenButton = document.querySelector("[data-menu-open]");
 const drawerLinks = drawer.querySelectorAll("a");
 
-const heroTrack = document.querySelector("[data-scrub-track]");
+const heroTrack = document.querySelector("[data-shippo-hero]");
 
 // トップはヒーローを抜けてから白背景にする。ヒーローが無いページは従来どおり
 const updateHeader = () => {

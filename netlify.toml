@@ -1,10 +1,11 @@
 [build]
-  # 4K素材(videos/)とローカル確認用サーバー(server.ps1)は配信しない
-  command = "mkdir -p _site && cp -r *.html *.css *.js assets frames _site/"
+  # 4K素材(videos/)とローカル確認用サーバー(server.ps1)は配信しない。
+  # hero-kit/ は本体(css/js/assets/frames)だけを配り、README やデモは出さない
+  command = "mkdir -p _site/hero-kit && cp -r *.html *.css *.js assets _site/ && cp -r hero-kit/shippo-hero.css hero-kit/shippo-hero.js hero-kit/assets hero-kit/frames _site/hero-kit/"
   publish = "_site"
 
 # フレームは差し替えない限り中身が変わらないので長期キャッシュさせる
 [[headers]]
-  for = "/frames/*"
+  for = "/hero-kit/frames/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
