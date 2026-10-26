@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="しずかに、ちいさく、ながく。北海道のブランド Shippo。" />
+  <title>Shippo — しずかに、ちいさく、ながく</title>
+  <!-- 文字の浮かび上がりを初回描画から効かせる(JS 無しなら最初から表示) -->
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Jost:wght@300;400;500&family=Zen+Old+Mincho:wght@400;600&display=swap" />
+
+  <!-- スクロール連動の仕組み(GitHub の hero-kit を jsDelivr 経由で読み込む。@ 以降はコミット番号で固定) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tokairin-ai/shippo-hero@6012809/hero-kit/shippo-hero.css" />
+  <script defer src="https://cdn.jsdelivr.net/gh/tokairin-ai/shippo-hero@6012809/hero-kit/shippo-hero.js"></script>
+
+  <link rel="stylesheet" href="./starter.css" />
+  <script defer src="./starter.js"></script>
+  <script defer src="./hero-outro.js"></script>
+</head>
+
+<body class="theme-forest">
+  <header class="header header--over-hero" data-header>
+    <nav class="header__nav header__nav--left" aria-label="メインナビゲーション">
+      <a href="#intro">About</a>
+      <a href="#products">Products</a>
+      <a href="#journal">Journal</a>
+    </nav>
+    <!-- 文字ロゴ(仮) -->
+    <a class="header__logo" href="#top" aria-label="Shippo トップへ">Shippo</a>
+    <nav class="header__nav header__nav--right" aria-label="サブナビゲーション">
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ファーストビュー: スクロール連動の動画だけを見せる(ロゴ・文字はいったん外している)。
+       仕組みは hero-kit をそのまま使い、コマ画像だけ ./hero-frames/ のものに差し替えている -->
+  <div class="shippo-hero hero-video-only" id="top" data-shippo-hero data-base="./hero-frames/">
+    <h1 class="visually-hidden">Shippo</h1>
+
+    <div class="shippo-hero__loader" aria-hidden="true">
+      <div class="shippo-hero__loader-bar"><span></span></div>
+    </div>
+
+    <div class="shippo-hero__stage">
+      <canvas class="shippo-hero__canvas"></canvas>
+
+      <!-- hero-kit の JS が参照するので要素は残す(表示は starter.css で消している) -->
+      <div class="shippo-hero__snow" aria-hidden="true">
+        <canvas class="shippo-hero__snow-canvas"></canvas>
+        <div class="shippo-hero__snow-veil"></div>
+      </div>
+      <div class="shippo-hero__ui"></div>
+
+      <!-- 動画が途中まで進んだら出るレイアウト(タイミングは hero-outro.js の SHOW_AT)。文章は仮 -->
+      <div class="hero-outro" data-hero-outro>
+        <div class="hero-outro__veil"></div>
+        <canvas class="hero-outro__canvas" aria-hidden="true"></canvas>
+
+        <div class="hero-outro__bottom">
+          <div class="hero-outro__arrivals hero-outro__fade" style="--delay: 0.6s">
+            <p class="hero-outro__title">New Arrivals</p>
+            <a class="hero-outro__link" href="#intro">SEE WINTER 26</a>
+          </div>
+          <p class="hero-outro__note hero-outro__fade" style="--delay: 0.75s">
+            雪の野に立つ一本の木のように。Winter 2026 は、寒い季節を静かに支える道具を集めました。手になじむ素材と、長く使い続けられるつくりで、毎日の暮らしにそっと寄り添います。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ファーストビューより下。参考: 4列の縦線・大きな見出し・スクロールで色が濃くなる紹介文・横並びの一覧。
+         文章と写真はすべて仮のもの -->
+
+    <!-- 紹介文: スクロールに合わせて一語ずつ明るくなる(data-highlight) -->
+    <section class="block lined" id="intro" aria-labelledby="intro-title">
+      <div class="block__inner">
+        <p class="eyebrow">Introduction</p>
+        <h2 class="statement" id="intro-title" data-highlight>
+          Shippo makes quiet, small and long-lasting things for everyday life in the north.
+        </h2>
+        <p class="statement-sub">北の暮らしに、しずかに、ちいさく、ながく寄り添うものづくり。</p>
+      </div>
+    </section>
+
+    <!-- 作業風景: 左半分に縦長の動画(スクロールしても画面に残る)、右半分に写真を 2×2 で並べる。文字は載せない。
+         動画と写真は仮の素材(本番では加工中・作業中の映像に差し替える) -->
+    <section class="process" id="process" aria-label="工房の様子">
+      <div class="process__media">
+        <video
+          class="process__video"
+          data-src="../videos/hero.mp4"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"
+        ></video>
+      </div>
+
+      <div class="process__grid">
+        <figure class="process-item"><img src="./photos/counter-oranges.webp" alt="" loading="lazy" /></figure>
+        <figure class="process-item"><img src="./photos/kitchen-portrait.webp" alt="" loading="lazy" /></figure>
+        <figure class="process-item"><img src="./photos/terrace-table.jpg" alt="" loading="lazy" /></figure>
+        <figure class="process-item"><img src="./photos/kitchen-wide.jpg" alt="" loading="lazy" /></figure>
+      </div>
+    </section>
+
+    <!-- 一覧: 左に名前、中央に写真、右に詳細と矢印 -->
+    <section class="block lined" id="products" aria-labelledby="products-title">
+      <div class="block__inner">
+        <div class="block__head">
+          <h2 class="display" id="products-title">Products</h2>
+          <p class="block__meta">3 selected items<br /><a href="#products">view all</a></p>
+        </div>
+      </div>
+
+      <ul class="rows">
+        <li class="row">
+          <div class="row__name">
+            <h3>Cutting Board</h3>
+            <p>Maple</p>
+          </div>
+          <figure class="row__image"><img src="./photos/board-leaning.jpg" alt="大理石のカウンターに立てかけた木のまな板" loading="lazy" /></figure>
+          <a class="row__arrow" href="#products" aria-label="Cutting Board を見る">↗</a>
+          <p class="row__jump">View Item</p>
+          <dl class="row__meta">
+            <div><dt>Material</dt><dd>Maple</dd></div>
+            <div><dt>Made in</dt><dd>Hokkaido</dd></div>
+          </dl>
+        </li>
+        <li class="row">
+          <div class="row__name">
+            <h3>Spoon &amp; Spatula</h3>
+            <p>Wild Cherry</p>
+          </div>
+          <figure class="row__image"><img src="./photos/spoons-top.webp" alt="木のトレイに置いたスプーンとヘラ" loading="lazy" /></figure>
+          <a class="row__arrow" href="#products" aria-label="Spoon &amp; Spatula を見る">↗</a>
+          <p class="row__jump">View Item</p>
+          <dl class="row__meta">
+            <div><dt>Material</dt><dd>Wild Cherry</dd></div>
+            <div><dt>Made in</dt><dd>Hokkaido</dd></div>
+          </dl>
+        </li>
+        <li class="row">
+          <div class="row__name">
+            <h3>Tray</h3>
+            <p>Castor Aralia</p>
+          </div>
+          <figure class="row__image"><img src="./photos/tray-and-board.jpg" alt="カウンターに置いた木のトレイとカップ" loading="lazy" /></figure>
+          <a class="row__arrow" href="#products" aria-label="Tray を見る">↗</a>
+          <p class="row__jump">View Item</p>
+          <dl class="row__meta">
+            <div><dt>Material</dt><dd>Castor Aralia</dd></div>
+            <div><dt>Made in</dt><dd>Hokkaido</dd></div>
+          </dl>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 読み物: 大きな見出しと、右側にスクロールで明るくなる本文 -->
+    <section class="block lined" id="journal" aria-labelledby="journal-title">
+      <div class="block__inner">
+        <h2 class="display" id="journal-title">Journal</h2>
+        <div class="story">
+          <p class="eyebrow eyebrow--dots"><span aria-hidden="true">● ● ● ●</span> The Season</p>
+          <p class="story__text" data-highlight>
+            When the first snow falls, the workshop goes quiet. We take our time, let the wood rest, and finish each piece by hand before it leaves for a new home.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <small>© 2026 Shippo — <a href="mailto:hello@example.com">hello@example.com</a></small>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</body>
+</html>
